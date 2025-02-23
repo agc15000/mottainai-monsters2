@@ -1,0 +1,7 @@
+<%= form_with(model: post, local: true) do |f| %>
+  <div>
+    <%= f.label :content %>
+    <%= f.text_area :content, rows: 3 %>
+  </div>
+  <%= f.submit "保存", class: "btn btn-success" %>
+<% end %>

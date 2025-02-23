@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy] # ログイン必須
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
 
   def index #ユーザーのすべての投稿がタイムライン形式で表示されるように後で設定
     @posts = Post.includes(:user).order(created_at: :desc)#最新の投稿の順番
@@ -10,20 +13,23 @@ class PostsController < ApplicationController
   end
 
   def create
-    current_user.posts.build(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path, notion: "投稿が作成されました"
+      redirect_to posts_path, notice: "投稿が作成されました"
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def edit #後で設定
-
+  def edit
   end
 
-  def update #後で設定
-
+  def update
+    if @post.update(post_params)
+      redirect_to posts_path, notice: "投稿が更新されました"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -37,6 +43,14 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def correct_user #自身の投稿のみ編集、破棄が可能
+    redirect_to posts_path, alert: "権限がありません" unless @post.user == current_user
+  end
 
   def post_params
     params.require(:post).permit(:content)
