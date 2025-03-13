@@ -1,0 +1,24 @@
+<h1>モンスターを生成</h1>
+
+<%= form_with model: @image, url: images_path, local: true do |form| %>
+  <div class="field">
+    <%= form.label :image_title, "廃棄せざるおえなくなったものの品名や特徴を記してください" %>
+    <%= form.text_area :image_title %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "モンスターを生成", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<% if @image.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+    <ul>
+      <% @image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

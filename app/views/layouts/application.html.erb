@@ -15,6 +15,7 @@
       <% if user_signed_in? %>
         <%= link_to "投稿一覧", root_path %> |
         <%= link_to "新規投稿", new_post_path %> |
+        <%= link_to "祟りの部屋", new_image_path %>
         <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
       <% else %>
         <%= link_to "ログイン", new_user_session_path %> |

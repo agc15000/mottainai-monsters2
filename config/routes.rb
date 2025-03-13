@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   resource :posts
+  resources :images, only: [:new, :create, :show]
   root "posts#index"
   # 投稿一覧をTOPページに
 end

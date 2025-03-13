@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  dall_e_image_url: MyString
+  s3_image_url: MyString
+  image_title: MyString
+
+two:
+  user: two
+  dall_e_image_url: MyString
+  s3_image_url: MyString
+  image_title: MyString
