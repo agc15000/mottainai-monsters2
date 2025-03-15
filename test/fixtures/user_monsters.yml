@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  monster: one
+  food_name: MyString
+  monster_name: MyString
+  message: MyText
+
+two:
+  user: two
+  monster: two
+  food_name: MyString
+  monster_name: MyString
+  message: MyText
