@@ -1,0 +1,29 @@
+<h1>モンスター登録</h1>
+
+<%= form_with model: @user_monster, local: true do |form| %>
+  <div>
+    <%= form.label :monster_id, 'モンスターの種類' %>
+    <div class="monsters">
+      <% @monsters.each do |monster| %>
+        <label>
+          <%= form.radio_button :monster_id, monster.id %>
+          <%= monster.name %>
+          <%= image_tag monster.image.url, size: '100x100' %>
+        </label>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :monster_name, 'モンスター名' %>
+    <%= form.text_field :monster_name %>
+  </div>
+
+  <div>
+    <%= form.label :message, '贖罪の言葉' %>
+    <%= form.text_area :message %>
+  </div>
+  <%= form.submit '登録' %>
+<% end %>
+
+<%= link_to '登録モンスター一覧', user_monsters_path %>

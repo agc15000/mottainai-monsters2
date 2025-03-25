@@ -1,0 +1,22 @@
+<h1>登録モンスター一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>モンスター画像</th>
+      <th>モンスター名</th>
+      <th>メッセージ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_monsters.each do |user_monster| %>
+      <tr>
+        <td><%= image_tag user_monster.monster.image.url, size: '100x100' %></td>
+        <td><%= user_monster.monster_name %></td>
+        <td><%= user_monster.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'モンスター登録', new_user_monster_path %>

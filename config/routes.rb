@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resource :posts
   root "posts#index"
-  # 投稿一覧をTOPページに
+
+  resources:user_monsters, only: [:new, :create, :index]
 end
