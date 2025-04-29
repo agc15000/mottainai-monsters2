@@ -7,5 +7,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :user_monsters
   has_many :monsters, through: :user_monsters
+  has_many :conversations
+  has_many :monster_messages, through: :conversations
 
 end

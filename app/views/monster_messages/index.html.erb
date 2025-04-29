@@ -1,0 +1,19 @@
+<h1><%= @conversation.user_monster.monster_name %> とのチャット</h1>
+
+<div id="message-list">
+  <% @monster_messages.each do |monster_message| %>
+    <div class="<%= monster_message.sender_type == 'monster' ? 'monster-message' : 'user-message' %>">
+      <strong><%= monster_message.sender_type == 'monster' ? @conversation.user_monster.monster_name : 'あなた' %>:</strong>
+      <%= monster_message.content %>
+      <small><%= monster_message.created_at.strftime('%Y/%m/%d %H:%M') %></small>
+    </div>
+  <% end %>
+</div>
+
+<h2>メッセージを送信</h2>
+<%= form_with model: @new_monster_message, url: user_monster_messages_path(@user, conversation_id: @conversation.id) do |form| %>
+  <%= form.text_area :content %>
+  <%= form.submit '送信' %>
+<% end %>
+
+<%= link_to 'モンスター一覧に戻る', user_monsters_path %>

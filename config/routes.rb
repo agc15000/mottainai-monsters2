@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resources :posts, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :posts
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   root "posts#index"
 
   resources:user_monsters, only: [:new, :create, :index]
+
+  resources :users do
+    resources :monster_messages, only: [:index, :create], path: 'monsters/:conversation_id/messages'
+  end
 end
