@@ -7,8 +7,10 @@
 #
 # set :output, "/path/to/my/cron_log.log"
 #
+set :environment, "development"
 every 1.day, at: '12:00 am' do
-  runner "GenerateMessagesJob.perform_later"
+#every 1.minute do
+  runner "GenerateMonsterMessagesJob.perform_later"
 end
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
